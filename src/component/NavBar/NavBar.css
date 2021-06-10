@@ -1,0 +1,8 @@
+.NavBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    min-height: 20vh;
+    background-color: rgb(109, 218, 176);
+}
