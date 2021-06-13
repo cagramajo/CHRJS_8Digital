@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import Header from './component/Header/Header';
-//import ItemListContainer from './component/ItemListContainer/ItemListContainer';
-// Componentes
-
+import 'semantic-ui-css/semantic.min.css'
+import NavBar from './component/NavBar/NavBar';
+import Title from './component/Title/Title';
+import ItemListContainer from './component/ItemListContainer/ItemListContainer';
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
+    <div>
+      <NavBar />
+      <Title />
+      <ItemListContainer />     
     </div>
   );
 }
