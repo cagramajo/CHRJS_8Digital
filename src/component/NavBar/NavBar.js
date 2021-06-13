@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import {Header, Segment} from 'semantic-ui-react'
+import CartWidget from './CartWidget/CartWidget'
 import './NavBar.css';
 
 class NavBar extends Component {
     render() {
         return (
-            <div>
-                <Segment clearing>
-                    <Header as='h2' floated='right'>
-                        Aqui va mi Menu
-                    </Header>
-                    <Header as='h2' floated='left'>
-                        Aquí va mi CartWidget
-                    </Header>
-                </Segment> 
-            </div>
+            <Segment className = 'NavBar' clearing>
+                <Header as='h1' floated='left'>
+                    Mi e-commerce
+                </Header>
+                <Header floated='right'>
+                    <CartWidget />
+                </Header>
+            </Segment> 
         )
     }
 }

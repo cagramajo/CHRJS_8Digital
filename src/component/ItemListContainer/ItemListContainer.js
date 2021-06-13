@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import './ItemListContainer.css'
 
 class ItemListContainer extends Component {
     render() {
         return (
-            <div>
+            <div className='ItemListContainer'>
                 Aquí se verá la lista de productos del e-comerce
             </div>
         )
@@ -11,3 +12,4 @@ class ItemListContainer extends Component {
 }
 
 export default ItemListContainer;
+
