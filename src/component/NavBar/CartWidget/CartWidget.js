@@ -4,7 +4,7 @@ const CartWidget = () => {
   return (
     <div>
       <div>
-        <i aria-hidden="true" class="shopping basket big icon"></i>
+        <i aria-hidden="true" className="shopping basket big icon"></i>
       </div>
     </div>
   );
