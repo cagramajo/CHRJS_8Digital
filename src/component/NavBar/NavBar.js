@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Header, Segment} from 'semantic-ui-react'
-import CartWidget from './CartWidget/CartWidget'
+import CartWidget from '../CartWidget/CartWidget'
 import './NavBar.css';
 
 class NavBar extends Component {

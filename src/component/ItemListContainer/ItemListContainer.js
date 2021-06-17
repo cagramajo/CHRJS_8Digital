@@ -1,7 +1,6 @@
 import React from 'react'
-import ItemCount from '../ItemCount/ItemCount';
+import ItemList from '../ItemList/ItemList';
 import './ItemListContainer.css'
-
 
 function ItemListContainer(props) {
 
@@ -9,15 +8,18 @@ function ItemListContainer(props) {
         console.log('Agregar al carrito', quantity);
     }
     
-
     return (
         <div className='ItemListContainer'>
-            <ItemCount  stock ='5'
-                        initial = "1"
-                        onAdd = {onAdd}/>
-            <div>{props.title}</div>
+            <ItemList />
         </div>
     )
 }
 
 export default ItemListContainer
+
+/*
+<ItemCount  stock ='5'
+            initial = "1"
+            onAdd = {onAdd}/>
+<div>{props.title}</div>
+*/
