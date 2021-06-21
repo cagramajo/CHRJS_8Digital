@@ -4,14 +4,18 @@ import 'semantic-ui-css/semantic.min.css'
 import NavBar from './component/NavBar/NavBar';
 //import Title from './component/Title/Title';
 import ItemListContainer from './component/ItemListContainer/ItemListContainer';
-
+import ItemDetailContainer from './component/ItemDetailContainer/ItemDetailContainer';
 function App() {
   return (
     <div>
       <NavBar />
-      <ItemListContainer title={'Comprar!'} />     
+      <ItemDetailContainer />   
+      <ItemListContainer />
     </div>
   );
 }
 
 export default App;
+
+// 
+// 
