@@ -1,7 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import {match} from 'react-router-dom'
-
-import axios from 'axios'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetailContainer.css'
@@ -10,7 +7,6 @@ function ItemDetailContainer({match}) {
 
     let IdProduct = match.params.IdProduct;
     const [Item, setItem] = useState({});
-    console.log(`https://my.api.mockaroo.com/product/${IdProduct}.json?key=e244da50`);
 
     useEffect(() => {
         fetch(`https://my.api.mockaroo.com/product/${IdProduct}.json?key=e244da50`)

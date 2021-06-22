@@ -8,8 +8,8 @@ import ItemListContainer from './component/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './component/ItemDetailContainer/ItemDetailContainer';
 function App() {
   return (
-    <Router>
-      <div>
+    <Router >
+      <div className = 'App'>
         <NavBar />
         <Title />
         <Switch>
