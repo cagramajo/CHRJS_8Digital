@@ -1,38 +1,38 @@
-/* import React, { Component } from 'react';
-import {Header, Segment} from 'semantic-ui-react'
-import CartWidget from '../CartWidget/CartWidget'
-import './NavBar.css';
-
-class NavBar extends Component {
-    render() {
-        return (
-            <Segment className = 'NavBar' clearing>
-                <Header as='h1' floated='left'>
-                    Mi e-commerce
-                </Header>
-                <Header floated='right'>
-                    <CartWidget />
-                </Header>
-            </Segment> 
-        )
-    }
-}
-
-export default NavBar; */
-
 import React from "react";
 import CartWidget from "../CartWidget/CartWidget";
-import './NavBar.css'
+import Menu from "../Menu/Menu";
+import "./NavBar.css";
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  Typography,
+  Badge,
+} from "@material-ui/core";
 
-export default function NavBar() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+export default function ButtonAppBar() {
+  const classes = useStyles();
+
   return (
-    <div className = "NavBar">
-      <div className="ui clearing segment">
-        <h2 className="ui right floated header">Mi e-commerce</h2>
-        <h2 className="ui left floated header">
-            <CartWidget />
-        </h2>
-      </div>
+    <div className={classes.root}>
+      <AppBar position="fixed">
+        <Toolbar variant="dense">
+          <Menu />
+          <Typography variant="h3" className={classes.title}>
+            Mi e-commerce
+          </Typography>
+          <CartWidget />
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }
