@@ -1,13 +1,13 @@
 import React from "react";
 import CartWidget from "../CartWidget/CartWidget";
 import Menu from "../Menu/Menu";
+import {Link} from 'react-router-dom'
 import "./NavBar.css";
 import {
   makeStyles,
   AppBar,
   Toolbar,
   Typography,
-  Badge,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +28,9 @@ export default function ButtonAppBar() {
         <Toolbar variant="dense">
           <Menu />
           <Typography variant="h3" className={classes.title}>
-            Mi e-commerce
+            <Link to = {'/'} className = "Link" >
+              Mi e-commerce
+            </Link>  
           </Typography>
           <CartWidget />
         </Toolbar>

@@ -2,3 +2,7 @@
     display: grid ;
     justify-content: center;
 }
+
+.Error{
+    margin-top: 100px;
+}

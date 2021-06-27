@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 import NavBar from './component/NavBar/NavBar';
 import ItemListContainer from './component/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './component/ItemDetailContainer/ItemDetailContainer';
-import Title from './component/Title/Title';
+
 function App() {
   return (
     <Router >

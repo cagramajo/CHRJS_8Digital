@@ -1,15 +1,12 @@
 import React from "react";
 import Item from "../Item/Item";
 import {Link} from 'react-router-dom'
-import {makeStyles, Grid, Paper} from '@material-ui/core';
+import {makeStyles, Grid} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
+    padding: 100
   },
 }));
 
