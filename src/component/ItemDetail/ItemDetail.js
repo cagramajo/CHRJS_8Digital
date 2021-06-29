@@ -1,29 +1,45 @@
 import React from "react";
-import ItemCount from "../ItemCount/ItemCount";
-import './ItemDetail.css'
+import {
+  makeStyles,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+} from "@material-ui/core";
 
-function ItemDetail({Photo, AltPhoto, NameProduct, Description, Price, Stock}) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: 100,
+    justifyContent: "center",
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+}));
+
+function ItemDetail({
+  Photo,
+  AltPhoto,
+  NameProduct,
+  Description,
+  Price,
+  Category,
+}) {
+  const classes = useStyles();
+
   return (
-    <div className = "ItemDetail"> 
-        <div className="ui card">
-            <div className="image">
-                <img src={Photo} alt={AltPhoto} />
-            </div>
-            <div className="content">
-            <div className="header">{NameProduct}</div>
-            <div className="meta">Categoria_Producto</div>
-                <div className="description">{Description}</div>
-            </div>
-            <div className="extra content">
-                <i aria-hidden="true" className="usd icon"></i>{Price}
-            </div>
-            <ItemCount 
-                stock = {Stock}
-                initial = {1}       
-            />
-        </div>
-    </div>
+    <Card className={classes.root}>
+      <CardHeader title={NameProduct} subheader={Category} />
+      <CardMedia className={classes.media} image={Photo} title={AltPhoto} />
+      <CardContent>
+        <Typography>{Description}</Typography>
+      </CardContent>
+      <CardHeader title={`ARS ${Price}`} />
+      <CardActions disableSpacing></CardActions>
+    </Card>
   );
 }
-
 export default ItemDetail;

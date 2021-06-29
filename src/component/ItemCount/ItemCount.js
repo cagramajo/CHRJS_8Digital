@@ -23,7 +23,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
         </div>
         <button className="ui green button" onClick={handleClickAdd}>+</button>
       </div>
-      <button className="ui primary button" onClick={(onAdd)}>Me llevo {quantity}!!</button>
+      <button className="ui primary button" onClick={() => onAdd(quantity)}>Me llevo {quantity}!!</button>
     </div>
   );
 };
