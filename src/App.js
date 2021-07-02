@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 import NavBar from './component/NavBar/NavBar';
 import ItemListContainer from './component/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './component/ItemDetailContainer/ItemDetailContainer';
+import Cart from './component/Cart/Cart';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path='/' exact component ={ItemListContainer} />
           <Route path='/product/:IdProduct'component = {ItemDetailContainer} />
+          <Route path='/Cart' component = {Cart} />
         </Switch>
       </div>
     </Router>

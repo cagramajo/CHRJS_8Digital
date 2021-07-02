@@ -3,7 +3,7 @@ import ItemList from '../ItemList/ItemList';
 import Loading from '../Loading/Loading'
 import './ItemListContainer.css'
 
-function ItemListContainer() {
+function ItemListContainer(/* products, stateFetch */) {
     
     const [products, setproducts] = useState([]);
     const [isPending, setIsPending] = useState(true);

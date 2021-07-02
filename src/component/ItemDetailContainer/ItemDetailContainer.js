@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import ItemDetail from "../ItemDetail/ItemDetail";
 import ItemCount from "../ItemCount/ItemCount";
 import Loading from "../Loading/Loading";
@@ -43,7 +44,11 @@ function ItemDetailContainer({ match }) {
 
         let out = null
         if ((selectedQuantity > 0)) {
-            out = (<p>Bontón Finalizar Compra</p>)
+            out = (
+                <Link to = '/cart'>
+                    <button className="ui primary button" /* onClick={() => onAdd(quantity)} */>Terminar mi compra</button>
+                </Link>
+                )
         }
         else if (Item != null){
             out = (<ItemCount 
@@ -53,6 +58,7 @@ function ItemDetailContainer({ match }) {
         }
         return out;
     }
+
 
     return (
         <div className="ItemDetailContainer">
