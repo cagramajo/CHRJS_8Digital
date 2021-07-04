@@ -14,8 +14,9 @@ function App() {
         <NavBar />
         <Switch>
           <Route path='/' exact component ={ItemListContainer} />
-          <Route path='/product/:IdProduct'component = {ItemDetailContainer} />
+          <Route path='/product/:IdProduct' component = {ItemDetailContainer} />
           <Route path='/Cart' component = {Cart} />
+          <Route path='/category/:CategoryName' component = {ItemListContainer}/>
         </Switch>
       </div>
     </Router>

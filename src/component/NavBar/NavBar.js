@@ -32,7 +32,9 @@ export default function ButtonAppBar() {
               Mi e-commerce
             </Link>  
           </Typography>
-          <CartWidget />
+          <Link to = {'/Cart'} className = "Link">
+            <CartWidget />
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
