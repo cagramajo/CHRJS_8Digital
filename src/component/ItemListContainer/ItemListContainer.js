@@ -39,8 +39,6 @@ function ItemListContainer({ match }) {
             });       
     }, [selectedCategory]);
 
-    console.log(selectedCategory);
-
     return (
         <div className='ItemListContainer'>
             {isPending && <Loading/>}

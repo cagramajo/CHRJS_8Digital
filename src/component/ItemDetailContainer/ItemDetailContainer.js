@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {Link} from 'react-router-dom';
+import {CartContext} from '../../CartContext'
 import ItemDetail from "../ItemDetail/ItemDetail";
 import ItemCount from "../ItemCount/ItemCount";
 import Loading from "../Loading/Loading";
@@ -9,7 +10,13 @@ import "./ItemDetailContainer.css";
 function ItemDetailContainer({ match }) {
 
     let IdProduct = match.params.IdProduct;
+    let itemCart = {
+        itemArticle:{},
+        quantity:0,
+    }
+    let auxItems = [];
 
+    const [items, setItems] = useContext(CartContext);
     const [Item, setItem] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -37,7 +44,14 @@ function ItemDetailContainer({ match }) {
 
     const onAdd = (quantity) => {
         setSelectedQuantity(quantity);
-        console.log(`Agregamos ${quantity} unidades del producto id: ${Item.IdProduct} al carrito`);
+        itemCart.itemArticle = Item;
+        itemCart.quantity = quantity;
+        auxItems = items;
+        console.log(auxItems);
+        auxItems.push(itemCart);
+        console.log(itemCart);
+        console.log(auxItems);
+        /* console.log(`Agregamos ${quantity} unidades del producto id: ${Item.IdProduct} al carrito`); */
     }
 
     const renderActionComponent = () => {
@@ -75,7 +89,6 @@ function ItemDetailContainer({ match }) {
                     Price={Item.Price}
                     Category={Item.Category}
                 />
-                {console.log(Item)}
             </Container>
         )}
         {renderActionComponent()}
