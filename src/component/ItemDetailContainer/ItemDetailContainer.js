@@ -49,9 +49,6 @@ function ItemDetailContainer({ match }) {
         auxItems = items;
         console.log(auxItems);
         auxItems.push(itemCart);
-        console.log(itemCart);
-        console.log(auxItems);
-        /* console.log(`Agregamos ${quantity} unidades del producto id: ${Item.IdProduct} al carrito`); */
     }
 
     const renderActionComponent = () => {
@@ -60,7 +57,7 @@ function ItemDetailContainer({ match }) {
         if ((selectedQuantity > 0)) {
             out = (
                 <Link to = '/cart'>
-                    <button className="ui primary button" /* onClick={() => onAdd(quantity)} */>Terminar mi compra</button>
+                    <button className="ui primary button" >Terminar mi compra</button>
                 </Link>
                 )
         }
