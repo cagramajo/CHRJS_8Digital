@@ -6,7 +6,7 @@ import NavBar from './component/NavBar/NavBar';
 import ItemListContainer from './component/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './component/ItemDetailContainer/ItemDetailContainer';
 import Cart from './component/Cart/Cart';
-import {CartProvider} from './CartContext'
+import {CartProvider} from './context/CartContext'
 
 function App() {
   return (
