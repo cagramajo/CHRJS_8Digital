@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {Link} from 'react-router-dom'
+import ProductContext from "../../context/ProductContext";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, IconButton, Menu, MenuItem } from "@material-ui/core";
 
@@ -10,26 +11,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleMenu() {
-    
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [categories, setCategories] = useState([])
-    const classes = useStyles();
 
-    useEffect(() => {
-        fetch('https://my.api.mockaroo.com/categories.json?key=e244da50')
-        .then((response) => {
-            if (!response.ok) {
-            throw Error("Connecting Error");
-            }
-            return response.json();
-        })
-        .then(categories => {
-            setCategories(categories); 
-        })
-        .catch(error => {
-            console.log(error.message);
-        });
-    }, [])
+    const {categories} = useContext(ProductContext);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const classes = useStyles();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -58,8 +43,8 @@ export default function SimpleMenu() {
                 onClose={handleClose}
             >
                 {categories.map(category =>
-                    <Link key={category.id} to = {`/category/${category.CategoryName}`}>
-                        <MenuItem onClick={handleClose}>{category.CategoryName}</MenuItem>    
+                    <Link key={category} to = {`/category/${category}`}>
+                        <MenuItem onClick={handleClose}>{category}</MenuItem>    
                     </Link>
                     )}
             </Menu>

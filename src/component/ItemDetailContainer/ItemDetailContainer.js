@@ -1,58 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import {Link} from 'react-router-dom';
-import {CartContext} from '../../context/CartContext'
 import ItemDetail from "../ItemDetail/ItemDetail";
 import ItemCount from "../ItemCount/ItemCount";
-import Loading from "../Loading/Loading";
+import ProductContext from "../../context/ProductContext";
+import CartContext from '../../context/CartContext'
 import { Container } from "@material-ui/core";
 import "./ItemDetailContainer.css";
 
 function ItemDetailContainer({ match }) {
 
     let IdProduct = match.params.IdProduct;
-    let itemCart = {
-        itemArticle:{},
-        quantity:0,
-    }
-    let auxItems = [];
 
-    const [items, setItems] = useContext(CartContext);
-    const [Item, setItem] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+    const productsState = useContext(ProductContext);
+    const {addToCart} = useContext(CartContext);
     const [selectedQuantity, setSelectedQuantity] = useState(0);
-
-    useEffect(() => {
-        fetch(`https://my.api.mockaroo.com/product/${IdProduct}.json?key=e244da50`)
-        .then((response) => {
-            if (!response.ok) {
-            throw Error("Connecting Error");
-            }
-            return response.json();
-        })
-        .then((product) => {
-            setItem(product);
-            setIsPending(false);
-            setError(false);
-        })
-        .catch((error) => {
-            setIsPending(false);
-            setError(error.message);
-        });
-        console.log('useEffect')
-    }, [IdProduct]);
-
-    const onAdd = (quantity) => {
+    const product = productsState.products.find(product => product.IdProduct == IdProduct);
+    
+    const handleAddToCar = (quantity) => {
+        let itemCart = {
+            product : product,
+            quantity: quantity,
+        }
+        addToCart(itemCart);
         setSelectedQuantity(quantity);
-        itemCart.itemArticle = Item;
-        itemCart.quantity = quantity;
-        auxItems = items;
-        console.log(auxItems);
-        auxItems.push(itemCart);
     }
 
     const renderActionComponent = () => {
-
         let out = null
         if ((selectedQuantity > 0)) {
             out = (
@@ -61,11 +34,11 @@ function ItemDetailContainer({ match }) {
                 </Link>
                 )
         }
-        else if (Item != null){
+        else if (product != null){
             out = (<ItemCount 
-                    stock = {Item.Stock}
+                    stock = {product.Stock}
                     initial = {1}
-                    onAdd = {onAdd}/>)
+                    onAdd = {handleAddToCar}/>)
         }
         return out;
     }
@@ -73,21 +46,17 @@ function ItemDetailContainer({ match }) {
 
     return (
         <div className="ItemDetailContainer">
-        {isPending && <Loading />}
-        {error && <div className="Error">{error}</div>}
-        {!error && !isPending && (
             <Container>
                 <ItemDetail
-                    key={Item.IdProduct}
-                    Photo={Item.UrlPhoto}
-                    AltPhoto={Item.AltPhoto}
-                    NameProduct={Item.NameProduct}
-                    Description={Item.LongDescription}
-                    Price={Item.Price}
-                    Category={Item.Category}
+                    key={product.IdProduct}
+                    Photo={product.UrlPhoto}
+                    AltPhoto={product.AltPhoto}
+                    NameProduct={product.NameProduct}
+                    Description={product.LongDescription}
+                    Price={product.Price}
+                    Category={product.Category}
                 />
             </Container>
-        )}
         {renderActionComponent()}
         </div>
     );

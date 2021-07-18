@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
+import CartContext from "../../context/CartContext";
 import {ShoppingBasket} from '@material-ui/icons'
 import {
   makeStyles,
   IconButton,
   Badge,
 } from "@material-ui/core";
+import { stat } from "fs";
+
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -14,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CartWidget = () => {
   const classes = useStyles();
+  const {state} = useContext(CartContext);
+  const {itemsCart} = state;
 
   return (
     <IconButton
@@ -22,7 +27,7 @@ const CartWidget = () => {
       color="inherit"
       aria-label="menu"
     >
-      <Badge badgeContent={9} color="secondary">
+      <Badge badgeContent={itemsCart.length} color="secondary">
         <ShoppingBasket fontSize="large"/>
       </Badge>
     </IconButton>
