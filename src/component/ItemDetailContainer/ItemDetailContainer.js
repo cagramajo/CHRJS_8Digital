@@ -10,7 +10,6 @@ import "./ItemDetailContainer.css";
 function ItemDetailContainer({ match }) {
 
     let IdProduct = match.params.IdProduct;
-
     const productsState = useContext(ProductContext);
     const {addToCart} = useContext(CartContext);
     const [selectedQuantity, setSelectedQuantity] = useState(0);

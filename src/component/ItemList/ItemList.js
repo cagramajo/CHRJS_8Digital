@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ItemList({list}) {
   const classes = useStyles();
-
   return (
     <div >
       <Grid container className={classes.root}>

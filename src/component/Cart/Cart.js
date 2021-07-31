@@ -1,61 +1,67 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+import React, {useContext} from 'react';
+import './Cart.css'
+import CartContext from '../../context/CartContext';
 
 export default function Cart() {
-  const classes = useStyles();
 
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  const {state} = useContext(CartContext);
+  const itemsCart = state.itemsCart;
+  console.log(itemsCart);
+
+  let total = 0
+
+  itemsCart.map(item => total = total + item.quantity * item.product.Price);
+
+  return(
+    <div className = 'Cart'>
+      <div className = 'ui center aligned container'>
+
+        {itemsCart.map(item =>
+          <div className="ui grid center aligned container" key = {itemsCart.indexOf(item)}>
+            <div className="two wide column">
+              <img src={item.product.UrlPhoto} alt={item.product.AltPhoto} className="ui small rounded image"/>
+            </div>
+            <div className="eight wide column">
+              <h4 className="ui header">
+                <div className="content">
+                  {item.product.NameProduct}
+                  <div className="sub header">
+                    {item.product.LittleDesciption}
+                  </div>
+                </div>
+              </h4>   
+            </div>
+            <div className="three wide column">{item.quantity}</div>
+            <div className="three wide column">{item.quantity * item.product.Price}</div>
+          </div>
+          )}
+        <div className="ui center aligned container">
+          <h2>{`Total $  ${total}`}</h2>
+        </div>
+
+        <form className = 'ui form Form' >
+          <div className="field">
+            <label>Name:</label>
+            <input name="empty" type="text"/>
+          </div>
+          <div className="field">
+            <label>Phone Number:</label>
+            <input name="empty" type="text"/>
+          </div>
+          <div className="field">
+            <label>e-mail:</label>
+            <input name="empty" type="text"/>
+          </div>
+          <div className="field">
+            <label>Repeate e-mail:</label>
+            <input name="empty" type="text"/>
+          </div>
+          <div>
+            <button className="ui purple button">Confirm Buy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
 

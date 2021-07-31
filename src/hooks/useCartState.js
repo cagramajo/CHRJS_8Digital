@@ -7,16 +7,12 @@ const useCartState = () =>{
 
     const addToCart = payload => {
 
-        const items = state.itemsCart;
-        console.log(items);
-        console.log(payload);
-        const existe = !(items.find(item => item.product.IdProduct == payload.product.IdProduct)); 
-        console.log(existe);
+        //const items = state.itemsCart;
+        //const existe = !(items.find(item => item.product.IdProduct === payload.product.IdProduct)); 
         setState({
                     ...state,
                     itemsCart: [...state.itemsCart, payload]
-                })
-      
+                })      
     }
 
     return{

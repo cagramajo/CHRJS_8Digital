@@ -13,10 +13,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 100,
     justifyContent: "center",
+    maxWidth: 800,
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "60%", // 16:9
   },
 }));
 

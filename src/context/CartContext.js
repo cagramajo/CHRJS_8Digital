@@ -1,12 +1,12 @@
-import React, {createContext, useState} from "react";
+import React, {createContext} from "react";
 import useCartState from "../hooks/useCartState";
 
 const CartContext = createContext();
 
 const CartProvider = (props) => {
-    const initialCartState = useCartState()
+    const cartState = useCartState()
     return (
-        <CartContext.Provider value={initialCartState}>
+        <CartContext.Provider value={cartState}>
             {props.children}
         </CartContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext} from 'react'
 import ItemList from '../ItemList/ItemList';
 import Loading from '../Loading/Loading'
 import ProductContext from '../../context/ProductContext';
@@ -15,7 +15,7 @@ function ItemListContainer({ match }) {
     const products = (!selectedCategory) ? 
         (productsState.products)
         :
-        (productsState.products.filter(product => product.Category == selectedCategory));
+        (productsState.products.filter(product => product.Category === selectedCategory));
 
     return (
         <div className='ItemListContainer'>
