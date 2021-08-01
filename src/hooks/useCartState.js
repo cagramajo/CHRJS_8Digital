@@ -1,7 +1,13 @@
 import { useState } from "react";
-import initialCartState from "../InitialCartState";
+import {db} from '../firebase'
+//import initialCartState from "../InitialCartState";
 
 const useCartState = () =>{
+
+    const initialCartState = {
+        itemsCart: [],
+        orderId: 0,
+    };
 
     const [state, setState] = useState(initialCartState);
 
@@ -15,8 +21,27 @@ const useCartState = () =>{
                 })      
     }
 
+    const newOrder = (order) => {
+        let salida = 0;
+        const orders = db.collection('orders');
+        orders.add(order)
+            .then((ref) => {
+                console.log('Orden registrada: ', ref.id);
+                salida = ref.id;
+                setState({
+                    ...state,
+                    orderId: salida,
+                })
+            })
+            .catch((e) => {
+                console.error(e);
+                return salida;
+            });
+    } 
+
     return{
         addToCart,
+        newOrder,
         state,
     }
 }

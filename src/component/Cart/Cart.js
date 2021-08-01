@@ -1,12 +1,68 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import './Cart.css'
 import CartContext from '../../context/CartContext';
+import {db} from '../../firebase';
 
 export default function Cart() {
 
+  const initialClientData = {
+    nameAndSurname:'',
+    phoneNumber:'',
+    email:'',
+    mailValidation:'',
+  };
+
+  const [clientData, setClientData] = useState(initialClientData);
+  const [completed, setcompleted] = useState(false);
   const {state} = useContext(CartContext);
   const itemsCart = state.itemsCart;
-  console.log(itemsCart);
+  const {newOrder} = useContext(CartContext);
+  const orderId = state.orderId;
+
+  const handleOnChange = (e) => {
+    const {name, value} = e.target;
+    const auxClientData = {...clientData, [name]:value};
+    const auxMailValidation = '';
+    setClientData(auxClientData);
+    fullDataVerification(auxClientData);    
+  }
+
+  const fullDataVerification = (auxClientData, auxMailValidation) => {
+    setcompleted(()=>{
+      if((auxClientData.nameAndSurname!='')&&(auxClientData.email!='')&&(auxClientData.phoneNumber!='')&&(auxClientData.email == auxClientData.mailValidation)){
+        return true;
+      }
+      return false;
+    })
+  }
+
+  const handleOnSubmit = async (e) => {
+    console.log(completed);
+    console.log(clientData);
+    const auxOrder = {
+      itemsCart: itemsCart,
+      clientData: clientData,
+    };
+    newOrder(auxOrder);
+  }
+
+  const renderOrderSection = () => {
+    console.log(orderId);
+    let out = null;
+    if(orderId==0){
+      out = (
+        <div>
+          <button className='ui purple button' type='button' disabled={!completed}  onClick = {handleOnSubmit}>Confirm Buy</button>
+        </div>
+      )}
+    else {
+      out = (
+        <div>
+          <h3>Su identificador de orden es: {orderId}</h3>
+        </div>
+      )}
+    return out;
+  }
 
   let total = 0
 
@@ -35,30 +91,24 @@ export default function Cart() {
             <div className="three wide column">{item.quantity * item.product.Price}</div>
           </div>
           )}
-        <div className="ui center aligned container">
+        <div className='ui center aligned container'>
           <h2>{`Total $  ${total}`}</h2>
         </div>
 
-        <form className = 'ui form Form' >
-          <div className="field">
-            <label>Name:</label>
-            <input name="empty" type="text"/>
+        <form className = 'ui form' >
+          <div className='field'>
+            <input name='nameAndSurname' type='text' placeholder='Name and Surname' value={clientData.nameAndSurname} onChange={handleOnChange}/>
           </div>
-          <div className="field">
-            <label>Phone Number:</label>
-            <input name="empty" type="text"/>
+          <div className='field'>
+            <input name='phoneNumber' type='text' placeholder='Phone Number' value={clientData.phoneNumber} onChange={handleOnChange}/>
           </div>
-          <div className="field">
-            <label>e-mail:</label>
-            <input name="empty" type="text"/>
+          <div className='field'>
+            <input name='email' type='text' placeholder='e-mail' value={clientData.email} onChange={handleOnChange}/>
           </div>
-          <div className="field">
-            <label>Repeate e-mail:</label>
-            <input name="empty" type="text"/>
+          <div className='field'>
+            <input name='mailValidation' type='text' placeholder='repeate e-mail' value={clientData.mailValidation} onChange={handleOnChange}/>
           </div>
-          <div>
-            <button className="ui purple button">Confirm Buy</button>
-          </div>
+          {renderOrderSection()}
         </form>
       </div>
     </div>

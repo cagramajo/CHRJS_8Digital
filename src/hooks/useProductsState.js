@@ -1,8 +1,16 @@
 import {useState, useEffect} from 'react';
-import initialProductsState from '../InitialProductsState';
+//import initialProductsState from '../InitialProductsState';
 import {db} from '../firebase'
 
 const useProductsState = () => {
+    
+    const initialProductsState = {
+        products:[],
+        categories:[],
+        pending: true,
+        error: null,
+    };
+
     const [state, setState] = useState(initialProductsState);
     //const URL = 'https://my.api.mockaroo.com/products.json?key=e244da50'
 
@@ -13,7 +21,10 @@ const useProductsState = () => {
                 if(querySnapshot.size === 0){
                     console.log('Sin resultados');
                 };
-                const productsObtained = querySnapshot.docs.map(doc => doc.data());
+                const productsObtained = querySnapshot.docs.map(doc => ({
+                    IdProduct: doc.id,
+                    ...doc.data(),
+                }));
                 setState({
                     ...state,
                     products: productsObtained,
