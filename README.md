@@ -1,3 +1,17 @@
+# CHRJS Digital
+
+Es un proyecto del curso de React JS de Coderhouse; el mismo consiste en crear un pequeño e-commerce con las enseñanzas de este curso.
+
+## Funcionalidades
+
+Creamos una web con las siguientes funcionalidades:
+- Obtener los datos de los productos desde un repositorio en FireBase. Estos productos se exponene en una la pagina principal.
+- Selección de producto a comprar; al pulsar sobre un producto, este abre su detalle; en este detalle podrá ejegir la cantidad de unidades de este articulo e incluirlas en tu carrito de compras
+- La busqueda tambien puede realizare desde un menú de categorias desplegables desde un icono.
+- Al seleccionar un producto, es posible acceder al carrtito de compras y ver los productos hasta ahora incluidos en él
+- En la vista de carrito podrás finalizar tu compra, cargando los datos del comprador y luego confirmando dicha compra.
+- Una véz generada la orden de compra, esta se almacena en un repositorio en FireBase, ofreciendo al comprador un identificador de dicha compra
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
