@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
           <Menu />
           <Typography variant="h3" className={classes.title}>
             <Link to = {'/'} className = "Link" >
-              Mi e-commerce
+              8 Digital
             </Link>  
           </Typography>
           <Link to = {'/Cart'} className = "Link">
